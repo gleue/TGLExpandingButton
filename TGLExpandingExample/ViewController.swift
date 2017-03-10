@@ -33,7 +33,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var sizeButton: TGLExpandingButton!
     @IBOutlet weak var sizeLabel: UILabel!
     
-    @IBOutlet weak var leftButton: TGLExpandingButton!
+    @IBOutlet weak var colorButton: TGLExpandingButton!
+    @IBOutlet weak var colorLabel: UILabel!
+
     @IBOutlet weak var downButton: TGLExpandingButton!
     @IBOutlet weak var upButton: TGLExpandingButton!
     
@@ -52,7 +54,7 @@ class ViewController: UIViewController {
 
         super.viewDidLoad()
         
-        self.leftButton.expandMode = .left
+        self.colorButton.expandMode = .left
         self.downButton.expandMode = .down
         self.upButton.expandMode = .up
         
@@ -60,13 +62,30 @@ class ViewController: UIViewController {
         self.upButton.layer.borderWidth = 1
         
         self.updateSizeLabel(fromButton: self.sizeButton)
-        
+        self.updateColorLabel(fromButton: self.colorButton)
+
         self.updateDamping(fromSlider: self.dampingSlider)
         self.updateVelocity(fromSlider: self.velocitySlider)
     }
 
     // MARK: - Actions
 
+    // Option 1: Handle individual buttons' `touchUpInside` actions
+    //
+    @IBAction func colorButtonTapped(_ sender: Any) {
+
+        // Since this method is called on expand AND collapse
+        // make sure we only handle the latter case, i.e.
+        // wehn the actual selection took place
+        //
+        if !colorButton.isExpanded {
+            
+            self.updateColorLabel(fromButton: self.colorButton)
+        }
+    }
+    
+    // Option 2: Handle control's `valueChanged` event
+    //
     @IBAction func valueChanged(_ sender: TGLExpandingButton) {
         
         if sender === self.sizeButton {
@@ -85,13 +104,17 @@ class ViewController: UIViewController {
         self.updateVelocity(fromSlider: sender)
     }
 
+    // Convenience: Close any expanded button on background tap
+    //
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
         
-        self.modeButton.setExpanded(false, animated: true)
-        self.sizeButton.setExpanded(false, animated: true)
-        self.leftButton.setExpanded(false, animated: true)
-        self.downButton.setExpanded(false, animated: true)
-        self.upButton.setExpanded(false, animated: true)
+        for view in self.view.subviews {
+            
+            if let button = view as? TGLExpandingButton {
+                
+                button.setExpanded(false, animated: true)
+            }
+        }
     }
     
     // MARK: - Helpers
@@ -101,26 +124,35 @@ class ViewController: UIViewController {
         self.sizeLabel.text = NSLocalizedString("Size: ", comment: "") + button.buttons[button.selectedIndex].title(for: .normal)!
     }
     
+    func updateColorLabel(fromButton button: TGLExpandingButton) {
+        
+        self.colorLabel.text = NSLocalizedString("Color: ", comment: "") + button.buttons[button.selectedIndex].title(for: .normal)!
+    }
+    
     func updateDamping(fromSlider slider: UISlider) {
         
         self.dampingLabel.text = NSLocalizedString("Damping: ", comment: "") + NumberFormatter.localizedString(from: NSNumber(value: slider.value), number: .percent)
-        
-        self.modeButton.springDampingRation = CGFloat(slider.value)
-        self.sizeButton.springDampingRation = CGFloat(slider.value)
-        self.leftButton.springDampingRation = CGFloat(slider.value)
-        self.downButton.springDampingRation = CGFloat(slider.value)
-        self.upButton.springDampingRation = CGFloat(slider.value)
+
+        for view in self.view.subviews {
+            
+            if let button = view as? TGLExpandingButton {
+                
+                button.springDampingRation = CGFloat(slider.value)
+            }
+        }
     }
     
     func updateVelocity(fromSlider slider: UISlider) {
         
-        self.velocityLabel.text = NSLocalizedString("Velocity: ", comment: "") + NumberFormatter.localizedString(from: NSNumber(value: slider.value), number: .percent)
-
-        self.modeButton.springInitialVelocity = CGFloat(slider.value)
-        self.sizeButton.springInitialVelocity = CGFloat(slider.value)
-        self.leftButton.springInitialVelocity = CGFloat(slider.value)
-        self.downButton.springInitialVelocity = CGFloat(slider.value)
-        self.upButton.springInitialVelocity = CGFloat(slider.value)
+        self.velocityLabel.text = NSLocalizedString("Velocity: ", comment: "") + NumberFormatter.localizedString(from: NSNumber(value: slider.value), number: .decimal)
+        
+        for view in self.view.subviews {
+            
+            if let button = view as? TGLExpandingButton {
+                
+                button.springInitialVelocity = CGFloat(slider.value)
+            }
+        }
     }
 }
 
