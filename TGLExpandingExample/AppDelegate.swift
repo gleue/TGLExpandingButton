@@ -3,7 +3,7 @@
 //  TGLExpandingButton
 //
 //  Created by Tim Gleue on 01.03.17.
-//  Copyright © 2017 Tim Gleue • interactive software. All rights reserved.
+//  Copyright © 2017 Tim Gleue ( http://gleue-interactive.com )
 //
 
 import UIKit
