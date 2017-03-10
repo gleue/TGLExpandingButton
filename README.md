@@ -7,6 +7,10 @@ TGLExpandingButton
 ==================
 
 A control that expands and collapses when one of its button subviews is tapped -- perfect for simple menus or option selection.
+ 
+<p align="center">
+<img src="https://raw.github.com/gleue/TGLExpandingButton/master/Screenshots/TGLExpandingButtonExample.gif" alt="TGLExpandingButtonExample" title="TGLExpandingButtonExample">
+</p>
 
 Getting Started
 ===============
