@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'TGLExpandingButton'
-  s.version  = '1.0.0'
+  s.version  = '1.0'
   s.license  = 'MIT'
   s.summary  = 'A control that expands and collapses when one of its button subviews is tapped -- perfect for simple menus or option selection.'
   s.homepage = 'https://github.com/gleue/TGLExpandingButton'
