@@ -66,7 +66,7 @@ public class TGLExpandingButton: UIControl {
     }
     
     /// Options passed to the animation function when expanding or collapsing buttons
-    public var animationOptions: UIViewAnimationOptions = []
+    @objc public var animationOptions: UIViewAnimationOptions = []
     /// Duration of the expand or collapse animation, measured in seconds.
     @IBInspectable public var animationDuration: TimeInterval = 0.25
     /// Spring damping for the expand or collapse animation.
@@ -78,7 +78,7 @@ public class TGLExpandingButton: UIControl {
     @IBInspectable public var spacing: CGFloat = 0.0
     
     /// Indicates whether the control is expanded (`true`) or collapsed (`false`). Setting this property will change the control's state without animating the transition.
-    public var isExpanded: Bool = false {
+    @objc public var isExpanded: Bool = false {
         
         didSet {
             
@@ -89,7 +89,7 @@ public class TGLExpandingButton: UIControl {
     /// Expand or collapse the control with optionally animating the transition.
     /// - parameter expanded: Pass `true` for expanded state or `false` for collapsed.
     /// - parameter animated: If `true` the transition will be animated.
-    public func setExpanded(_ expanded: Bool, animated: Bool) {
+    @objc public func setExpanded(_ expanded: Bool, animated: Bool) {
         
         self.isExpanded = expanded
         
@@ -115,7 +115,7 @@ public class TGLExpandingButton: UIControl {
     }
     
     /// The list of button subviews used by this control. Property `selectedIndex` denotes the currently selected button.
-    fileprivate(set) public var buttons: Array<UIButton> = []
+    @objc private(set) public var buttons: Array<UIButton> = []
 
     // MARK: - Subview handling
     
