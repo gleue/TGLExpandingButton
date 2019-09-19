@@ -38,9 +38,9 @@ Then in your project:
 Requirements
 ============
 
-* Swift >= 3
+* Swift >= 5
 * iOS >= 9.0
-* Xcode >= 8.0
+* Xcode >= 10.0
 
 License
 =======
