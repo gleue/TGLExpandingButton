@@ -9,5 +9,5 @@ Pod::Spec.new do |s|
   s.source_files = 'TGLExpandingButton'
 
   s.requires_arc = true
-  s.platform = :ios, '9.0'
+  s.platform = :ios, '10.3'
 end
