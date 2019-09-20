@@ -10,4 +10,5 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
   s.platform = :ios, '10.3'
+  s.swift_version = '5.0'
 end
