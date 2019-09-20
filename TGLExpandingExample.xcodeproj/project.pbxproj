@@ -115,7 +115,7 @@
 			};
 			buildConfigurationList = 3D99CFA91E67175800037765 /* Build configuration list for PBXProject "TGLExpandingExample" */;
 			compatibilityVersion = "Xcode 8.0";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
