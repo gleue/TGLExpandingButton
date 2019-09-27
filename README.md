@@ -39,7 +39,7 @@ Requirements
 ============
 
 * Swift >= 5
-* iOS >= 9.0
+* iOS >= 10.3
 * Xcode >= 10.0
 
 License
